@@ -1,0 +1,254 @@
+/* Add your CSS styles here */
+.watchAndDescription {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    margin: 0;
+    /* border: red 2px solid; */
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    box-sizing: border-box;
+    /* border: red 2px solid; */
+}
+
+.slider-container {
+    width: 50%;
+    overflow: hidden;
+}
+
+.description-container {
+    width: 50%;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.splide__slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+/* ------------------ */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    /* background-color: #333; */
+    /* color: white; */
+    padding-left: 30px;
+    padding-right: 40px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    max-width: 100px;
+    margin-right: 10px;
+}
+
+/* a{
+
+} */
+
+.menu {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+}
+
+.menu li {
+    margin-right: 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #1C1415;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.menu button {
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50px;
+    background: #1C1415;
+}
+
+.toogleOption{
+    display: none;
+}
+
+
+/* ------------------- */
+.description-container{
+    /* border: red 2px solid; */
+    height: 60vh;
+    /* background-color: black; */
+    color: white;
+    margin-right: 3rem;
+    width: 65vw;
+}
+
+#main-heading{
+    color: #FFFFFF;
+    font-family: "Sofia Sans";
+    font-size: 46px;
+    font-style: normal;
+    font-weight: 900;
+    /* line-height: 137%; 104.12px */
+    letter-spacing: -0.76px;
+}
+
+#second-heading{
+    color: #FFF;
+    font-family: "Sofia Sans";
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 1000;
+    letter-spacing: -0.52px;
+    margin-bottom: 2rem;
+}
+
+#description{
+    color: rgba(28, 20, 21, 0.80);
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    height: 100px;
+    /* border: red 2px solid; */
+}
+
+#price{
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    margin-bottom: 3rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .logo {
+        justify-content: center;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: transparent;
+        text-align: right; /* Align menu items to the right */
+    }
+
+    .menu.show {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .menu li {
+        margin: 10;
+        text-align: center;
+    }
+
+    .menu button {
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 50px;
+        background: #1C1415;
+    }
+
+    .toogleOption {
+        display: block;
+    }
+
+    /* New styles for the layout change */
+    .watchAndDescription{
+        height: fit-content;
+        /* text-align: center; */
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
+        /* text-align: center; */
+        width: 100%;
+        /* flex: 1; */
+        /* border: red solid 2px; */
+    }
+
+    .description-container {
+        text-align: center;
+        /* border: red solid 2px; */
+        width: 100%;
+        margin-left: 10%;
+        /* height: 1000px;
+        border: red solid 2px; */
+    }
+
+    .slider-container {
+        width: 60%; /* Full width for the slider */
+        margin-top: 20px; 
+    }
+
+    #main-heading{
+        font-size: 36px;
+        text-align: center;
+    }
+    
+    #second-heading{
+        font-size: 18px;
+        text-align: center;
+        /* margin-bottom: 0.1rem; */
+    }
+
+    #description{
+        font-size: 13px;
+        text-align: center;
+        height: 60px;
+        /* margin-bottom: 0.1rem; */
+    }
+
+    #price{
+        font-size: 20px;
+        text-align: center;
+        /* margin-bottom: 0.2rem; */
+    }
+
+    svg{
+        margin-bottom: 20px;
+    }
+    
+}
+

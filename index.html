@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Slider</title>
+    <!-- Include Splide.js library -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.0.9/dist/css/splide.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.0.9/dist/js/splide.min.js"></script>
+    <link rel="stylesheet" href="/index.css">
+    <!-- Import Sofia Sans font from Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@400;700&display=swap">
+    <!-- Include Poppins font from Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
+<body>
+<nav>
+    <div class="logo">
+        <img src="./images/Logologo.png" alt="Logo">
+    </div>
+    <ul class="menu" id="menu">
+        <li><a href="#">Shop</a></li>
+        <li><a href="#">Brands</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><button onclick="location.href='#'">Sign Up</button></li>
+    </ul>
+    <div class="toogleOption" onclick="toggleMenu()">☰</div>
+</nav>
+<div class="watchAndDescription">
+    <div class="container">
+        <div class="description-container">
+            <div class="description" id="main-heading"></div>
+            <div class="description" id="second-heading"></div>
+            <div class="description" id="description"></div>
+            <div class="price" id="price"></div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="240" height="60" viewBox="0 0 240 60" fill="none">
+                <circle cx="30" cy="30" r="29" stroke="white" stroke-width="2"/>
+                <circle cx="120" cy="30" r="29" stroke="white" stroke-width="2"/>
+                <circle cx="210" cy="30" r="29" stroke="white" stroke-width="2"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M197 28.6299V30.5403C197 34.4489 197 36.4033 198.222 37.6607C199.445 38.9182 201.369 38.9726 205.218 39.0816L205.218 39.0816C207.042 39.1331 208.905 39.1701 210.5 39.1701C212.095 39.1701 213.958 39.1331 215.782 39.0816L215.782 39.0816C219.631 38.9726 221.555 38.9182 222.778 37.6607C224 36.4033 224 34.4489 224 30.5403V28.6299C224 24.7212 224 22.7668 222.778 21.5093C221.555 20.2518 219.631 20.1974 215.782 20.0885L215.782 20.0885C213.958 20.037 212.095 20 210.5 20C208.905 20 207.042 20.037 205.218 20.0885C201.369 20.1974 199.445 20.2518 198.222 21.5093C197 22.7668 197 24.7212 197 28.6299ZM208 33L214 29.5L208 26V33Z" fill="white"/>
+                <path d="M133 19.0119C133 19.0119 130.615 20.4207 129.289 20.8201C128.577 20.0017 127.631 19.4216 126.579 19.1583C125.527 18.8951 124.419 18.9613 123.406 19.3481C122.393 19.7348 121.523 20.4235 120.914 21.3208C120.304 22.2182 119.985 23.281 120 24.3655V25.5473C117.923 25.6012 115.865 25.1406 114.009 24.2065C112.154 23.2724 110.558 21.8939 109.364 20.1937C109.364 20.1937 104.636 30.8301 115.273 35.5574C112.839 37.2095 109.939 38.0379 107 37.921C117.636 43.8301 130.636 37.921 130.636 24.3301C130.635 24.0009 130.604 23.6725 130.542 23.3492C131.748 22.1596 133 19.0119 133 19.0119Z" fill="white"/>
+                <path d="M37.85 16H33.8C32.0098 16 30.2928 16.7112 29.0271 17.977C27.7612 19.2429 27.05 20.9598 27.05 22.75V26.8H23V32.2H27.05V43H32.45V32.2H36.5L37.85 26.8H32.45V22.75C32.45 22.392 32.5923 22.0486 32.8454 21.7954C33.0985 21.5422 33.442 21.4 33.8 21.4H37.85V16Z" fill="white"/>
+            </svg>
+        </div>
+        <div class="slider-container">
+            <div class="splide" id="watch-slider">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <!-- Slide items will be dynamically generated here using JavaScript -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Fetch the JSON file
+        fetch('./index.json')
+            .then(response => response.json())
+            .then(data => {
+            
+                // Initialize Splide slider
+                let watchSlider = new Splide('#watch-slider', {
+                    type: 'fade',
+                    height: 500,
+                    pagination: false,
+                    arrows: true,
+                    cover: true,
+                    autoHeight: true,
+                    width: '100%',
+                    breakpoints: {
+                        600: {
+                            autoHeight: true,
+                        }
+                    }
+                });
+
+                // Generate slide items dynamically
+                const slideList = data.slides.map(slide => {
+                    return `
+                        <li class="splide__slide">
+                            <img src="${slide.imageUrl}" alt="${slide.mainHeading}">
+                        </li>
+                    `;
+                }).join('');
+
+                // Append the generated slide list to the UL
+                document.querySelector('.splide__list').innerHTML = slideList;
+
+                // Set up an event listener for slide change
+                watchSlider.on('moved', function (newIndex) {
+                    updateDescription(data.slides[newIndex]);
+                    updateBackgroundColor(data.slides[newIndex]);
+                });
+
+                // Mount the Splide slider
+                watchSlider.mount();
+
+                // Initial update of description with the first slide data
+                updateDescription(data.slides[0]);
+
+                // Function to update description based on the current slide
+                function updateDescription(slide) {
+                    document.body.style.background = data.slides[0].backgroundGradient || slide.backgroundGradient
+                    document.getElementById('main-heading').innerText = slide.mainHeading;
+                    document.getElementById('second-heading').innerText = slide.secondHeading;
+                    document.getElementById('description').innerText = slide.description;
+                    document.getElementById('price').innerText = slide.price;
+                    // document.querySelector(['body']).style
+                }
+
+                // Function to update background color based on the current slide
+                function updateBackgroundColor(slide) {
+                    document.body.style.background = slide.backgroundGradient || 'linear-gradient(105.54deg, #F4A764, #FFDEC2)';
+                }
+            });
+
+    });
+
+    function toggleMenu() {
+        const menu = document.getElementById('menu');
+        menu.classList.toggle('show');
+    }
+</script>
+</body>
+</html>
